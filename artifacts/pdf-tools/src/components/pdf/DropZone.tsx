@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import { Upload, FileText } from "lucide-react";
+import { UploadCloud, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface DropZoneProps {
@@ -21,9 +21,7 @@ export default function DropZone({
   disabled,
 }: DropZoneProps) {
   const onDrop = useCallback(
-    (accepted: File[]) => {
-      if (accepted.length > 0) onFiles(accepted);
-    },
+    (accepted: File[]) => { if (accepted.length > 0) onFiles(accepted); },
     [onFiles]
   );
 
@@ -39,30 +37,40 @@ export default function DropZone({
       {...getRootProps()}
       data-testid="dropzone"
       className={cn(
-        "flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed p-10 cursor-pointer transition-all duration-200",
+        "relative flex flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed p-12 cursor-pointer transition-all duration-200",
         isDragActive
           ? "border-primary bg-primary/5 scale-[1.01]"
-          : "border-border hover:border-primary/60 hover:bg-muted/40",
-        disabled && "opacity-50 cursor-not-allowed",
+          : "border-border bg-card hover:border-primary/50 hover:bg-primary/[0.02]",
+        disabled && "opacity-50 cursor-not-allowed pointer-events-none",
         className
       )}
     >
       <input {...getInputProps()} data-testid="dropzone-input" />
-      <div className={cn("rounded-full p-4 transition-colors", isDragActive ? "bg-primary/10" : "bg-muted")}>
-        {isDragActive ? (
-          <FileText className="h-8 w-8 text-primary" />
-        ) : (
-          <Upload className="h-8 w-8 text-muted-foreground" />
-        )}
+
+      <div className={cn(
+        "flex h-16 w-16 items-center justify-center rounded-2xl transition-colors",
+        isDragActive ? "bg-primary/15" : "bg-muted"
+      )}>
+        {isDragActive
+          ? <FileText className="h-8 w-8 text-primary" />
+          : <UploadCloud className="h-8 w-8 text-muted-foreground" />
+        }
       </div>
-      <div className="text-center">
-        <p className="text-sm font-medium text-foreground">
-          {isDragActive ? "Drop your PDF here" : label ?? "Drop PDF here or click to browse"}
+
+      <div className="text-center space-y-1.5">
+        <p className="text-sm font-semibold text-foreground">
+          {isDragActive ? "Release to upload" : label ?? "Drop your PDF here"}
         </p>
-        <p className="mt-1 text-xs text-muted-foreground">
-          {sublabel ?? (multiple ? "Select multiple PDF files" : "Select a PDF file")}
+        <p className="text-xs text-muted-foreground">
+          {sublabel ?? (multiple ? "or click to browse multiple PDF files" : "or click to browse a PDF file")}
         </p>
       </div>
+
+      {!isDragActive && (
+        <div className="rounded-lg border bg-background px-4 py-1.5 text-xs font-medium text-muted-foreground shadow-sm">
+          PDF files only
+        </div>
+      )}
     </div>
   );
 }

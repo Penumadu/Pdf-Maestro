@@ -1,6 +1,5 @@
-import { FileText, X } from "lucide-react";
+import { FileText, X, Hash } from "lucide-react";
 import { formatFileSize } from "@/lib/pdf-utils";
-import { Button } from "@/components/ui/button";
 
 interface FileInfoProps {
   file: File;
@@ -10,21 +9,41 @@ interface FileInfoProps {
 
 export default function FileInfo({ file, pageCount, onRemove }: FileInfoProps) {
   return (
-    <div className="flex items-center gap-3 rounded-lg border bg-card px-4 py-3" data-testid="file-info">
-      <div className="rounded-md bg-primary/10 p-2">
+    <div
+      className="flex items-center gap-4 rounded-xl border bg-card px-5 py-4 shadow-sm"
+      data-testid="file-info"
+    >
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10">
         <FileText className="h-5 w-5 text-primary" />
       </div>
+
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium truncate" data-testid="file-name">{file.name}</p>
-        <p className="text-xs text-muted-foreground">
-          {formatFileSize(file.size)}
-          {pageCount !== undefined && ` · ${pageCount} page${pageCount !== 1 ? "s" : ""}`}
+        <p className="text-sm font-semibold truncate text-foreground" data-testid="file-name">
+          {file.name}
         </p>
+        <div className="mt-0.5 flex items-center gap-2 text-xs text-muted-foreground">
+          <span>{formatFileSize(file.size)}</span>
+          {pageCount !== undefined && (
+            <>
+              <span className="text-muted-foreground/40">·</span>
+              <span className="flex items-center gap-1">
+                <Hash className="h-3 w-3" />
+                {pageCount} {pageCount === 1 ? "page" : "pages"}
+              </span>
+            </>
+          )}
+        </div>
       </div>
+
       {onRemove && (
-        <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={onRemove} data-testid="remove-file">
+        <button
+          onClick={onRemove}
+          data-testid="remove-file"
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors"
+          title="Remove file"
+        >
           <X className="h-4 w-4" />
-        </Button>
+        </button>
       )}
     </div>
   );

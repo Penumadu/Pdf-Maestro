@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { PDFDocument } from "pdf-lib";
 import { GripVertical, Trash2, FileText, Plus, ChevronDown, ChevronUp, Loader2 } from "lucide-react";
 import ToolLayout from "@/components/pdf/ToolLayout";
