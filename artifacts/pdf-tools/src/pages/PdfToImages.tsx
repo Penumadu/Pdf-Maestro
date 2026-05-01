@@ -115,21 +115,30 @@ export default function PdfToImages() {
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                   {previews.map((src, i) => (
-                    <div key={i} className="group relative rounded-lg overflow-hidden border bg-card">
-                      <img src={src} alt={`Page ${i + 1}`} className="w-full object-contain" />
-                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2">
-                        <Button
-                          size="sm"
-                          variant="secondary"
-                          onClick={() => downloadOne(i + 1)}
-                          data-testid={`download-page-${i + 1}`}
-                          className="gap-1 text-xs"
-                        >
-                          <Download className="h-3.5 w-3.5" />
-                          Download PNG
-                        </Button>
+                    <div key={i} className="group relative flex flex-col rounded-lg overflow-hidden border bg-card shadow-sm">
+                      {/* Fixed-ratio image area */}
+                      <div className="relative aspect-[3/4] bg-muted flex items-center justify-center overflow-hidden">
+                        <img
+                          src={src}
+                          alt={`Page ${i + 1}`}
+                          className="max-w-full max-h-full object-contain"
+                        />
+                        {/* Hover overlay */}
+                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            onClick={() => downloadOne(i + 1)}
+                            data-testid={`download-page-${i + 1}`}
+                            className="gap-1.5 text-xs shadow"
+                          >
+                            <Download className="h-3.5 w-3.5" />
+                            Download PNG
+                          </Button>
+                        </div>
                       </div>
-                      <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-xs text-center py-1">
+                      {/* Page label */}
+                      <div className="px-2 py-1.5 text-xs font-medium text-center text-muted-foreground bg-card border-t">
                         Page {i + 1}
                       </div>
                     </div>
