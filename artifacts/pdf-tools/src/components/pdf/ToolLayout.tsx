@@ -21,7 +21,7 @@ export default function ToolLayout({ title, description, children }: ToolLayoutP
           <span className="text-muted-foreground/40">|</span>
           <div className="flex items-center gap-2">
             <FileText className="h-4 w-4 text-primary" />
-            <span className="font-semibold text-sm">{title}</span>
+            <span className="font-semibold text-sm">Srini PDF Tools · {title}</span>
           </div>
         </div>
       </header>

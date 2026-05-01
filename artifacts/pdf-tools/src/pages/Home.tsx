@@ -94,7 +94,7 @@ export default function Home() {
             <div className="rounded-lg bg-primary p-1.5">
               <FileText className="h-4 w-4 text-white" />
             </div>
-            <span className="font-semibold text-sm tracking-tight">PDF Tools</span>
+            <span className="font-semibold text-sm tracking-tight">Srini PDF Tools</span>
           </div>
           <Button
             variant="ghost"
@@ -114,7 +114,7 @@ export default function Home() {
             All processing happens in your browser — files never leave your device
           </div>
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-4">
-            PDF Tools, Simplified
+            Srini PDF Tools
           </h1>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
             Merge, split, edit, compress, and convert PDFs — no uploads, no accounts, no bloated software.
