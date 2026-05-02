@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import {
   Merge, Scissors, PenLine, Minimize2, RotateCw,
   FileMinus, Image, FileText, Moon, Sun, Lock, Zap, Globe,
+  Images, ScanLine, Crop,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -39,7 +40,7 @@ const utilityTools = [
   {
     href: "/compress",
     icon: Minimize2,
-    title: "Compress",
+    title: "Compress PDF",
     description: "Reduce file size with Auto, Low, Medium, or High compression.",
     color: "text-green-500",
     bg: "bg-green-500/10",
@@ -71,6 +72,33 @@ const utilityTools = [
     color: "text-yellow-500",
     bg: "bg-yellow-500/10",
     border: "hover:border-yellow-400/40",
+  },
+  {
+    href: "/images-to-pdf",
+    icon: Images,
+    title: "Images to PDF",
+    description: "Combine JPG, PNG or WebP images into a single PDF document.",
+    color: "text-indigo-500",
+    bg: "bg-indigo-500/10",
+    border: "hover:border-indigo-400/40",
+  },
+  {
+    href: "/image-compress",
+    icon: ScanLine,
+    title: "Image Compress",
+    description: "Shrink image file size with quality control. Export as JPEG or WebP.",
+    color: "text-teal-500",
+    bg: "bg-teal-500/10",
+    border: "hover:border-teal-400/40",
+  },
+  {
+    href: "/image-resize",
+    icon: Crop,
+    title: "Passport & Visa Photo",
+    description: "Resize photos to exact passport/visa specs for 15+ countries.",
+    color: "text-rose-500",
+    bg: "bg-rose-500/10",
+    border: "hover:border-rose-400/40",
   },
 ];
 

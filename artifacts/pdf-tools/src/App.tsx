@@ -11,6 +11,9 @@ import Compress from "@/pages/Compress";
 import Rotate from "@/pages/Rotate";
 import Extract from "@/pages/Extract";
 import PdfToImages from "@/pages/PdfToImages";
+import ImagesToPdf from "@/pages/ImagesToPdf";
+import ImageCompress from "@/pages/ImageCompress";
+import ImageResize from "@/pages/ImageResize";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +28,9 @@ function Router() {
       <Route path="/rotate" component={Rotate} />
       <Route path="/extract" component={Extract} />
       <Route path="/pdf-to-images" component={PdfToImages} />
+      <Route path="/images-to-pdf" component={ImagesToPdf} />
+      <Route path="/image-compress" component={ImageCompress} />
+      <Route path="/image-resize" component={ImageResize} />
       <Route component={NotFound} />
     </Switch>
   );
