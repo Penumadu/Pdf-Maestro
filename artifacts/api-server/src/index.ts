@@ -2,24 +2,17 @@ import app from "./app";
 import { logger } from "./lib/logger";
 
 const rawPort = process.env["PORT"];
+const isVercel = process.env["VERCEL"] === "1" || !!process.env["VERCEL"];
 
-if (!rawPort) {
-  throw new Error(
-    "PORT environment variable is required but was not provided.",
-  );
-}
-
-const port = Number(rawPort);
-
-if (Number.isNaN(port) || port <= 0) {
-  throw new Error(`Invalid PORT value: "${rawPort}"`);
-}
-
-app.listen(port, (err) => {
-  if (err) {
-    logger.error({ err }, "Error listening on port");
-    process.exit(1);
+if (!isVercel) {
+  const port = rawPort ? Number(rawPort) : 3001;
+  if (Number.isNaN(port) || port <= 0) {
+    throw new Error(`Invalid PORT value: "${rawPort}"`);
   }
 
-  logger.info({ port }, "Server listening");
-});
+  app.listen(port, () => {
+    logger.info({ port }, "Server listening");
+  });
+}
+
+export default app;
