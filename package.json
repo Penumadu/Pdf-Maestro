@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "mkdir -p public && echo 'Initial public dir created' && pnpm -r --if-present run build && echo 'pnpm -r build done' && pnpm --filter @workspace/pdf-tools build && echo 'Explicit filter build done' && (cp -r artifacts/pdf-tools/dist/public/. public/ || cp -r artifacts/pdf-tools/dist/. public/ || cp -r artifacts/pdf-tools/public/. public/ || true) && echo 'Copy done' && ls -la public/",
+    "build": "mkdir -p public; echo 'Initial public dir created'; pnpm -r --if-present run build; echo 'pnpm -r build done'; pnpm --filter @workspace/pdf-tools build; echo 'Explicit filter build done'; (cp -r artifacts/pdf-tools/dist/public/. public/ || cp -r artifacts/pdf-tools/dist/. public/ || cp -r artifacts/pdf-tools/public/. public/ || true); echo 'Copy done'; ls -la public/",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
