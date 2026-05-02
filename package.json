@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "preinstall": "sh -c 'rm -f package-lock.json yarn.lock; case \"$npm_config_user_agent\" in pnpm/*) ;; *) echo \"Use pnpm instead\" >&2; exit 1 ;; esac'",
-    "build": "mkdir -p public && pnpm -r --if-present run build && pnpm --filter @workspace/pdf-tools build && (cp -r artifacts/pdf-tools/dist/public/. public/ || cp -r artifacts/pdf-tools/dist/. public/ || cp -r artifacts/pdf-tools/public/. public/ || true)",
+    "build": "mkdir -p public && echo 'Initial public dir created' && pnpm -r --if-present run build && echo 'pnpm -r build done' && pnpm --filter @workspace/pdf-tools build && echo 'Explicit filter build done' && (cp -r artifacts/pdf-tools/dist/public/. public/ || cp -r artifacts/pdf-tools/dist/. public/ || cp -r artifacts/pdf-tools/public/. public/ || true) && echo 'Copy done' && ls -la public/",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
