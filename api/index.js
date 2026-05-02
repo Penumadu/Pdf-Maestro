@@ -1,19 +1,16 @@
-let errorOnLoad = null;
-try {
-  const express = require("express");
-  const cors = require("cors");
-} catch (e) {
-  errorOnLoad = e;
-}
-
 module.exports = function handler(req, res) {
-  if (errorOnLoad) {
+  let express, cors;
+  try {
+    express = require("express");
+    cors = require("cors");
+  } catch (e) {
     res.statusCode = 500;
     res.setHeader('Content-Type', 'text/plain');
-    res.end(`Error on load (Root): ${errorOnLoad.message}\nStack: ${errorOnLoad.stack}`);
+    res.end(`Error on require (Root): ${e.message}\nStack: ${e.stack}`);
     return;
   }
+
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify({ status: "ok", message: "Error-catch root works!" }));
+  res.end(JSON.stringify({ status: "ok", message: "Async CommonJS works!" }));
 };
