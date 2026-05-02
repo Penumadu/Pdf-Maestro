@@ -76,6 +76,8 @@
   },
   "dependencies": {
     "@types/pdfjs-dist": "^2.10.378",
+    "express": "^5.0.1",
+    "cors": "^2.8.5",
     "jszip": "^3.10.1",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^5.7.284",
