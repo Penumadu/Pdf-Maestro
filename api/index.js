@@ -1,23 +1,5 @@
-const express = require("express");
-const cors = require("cors");
-
-const app = express();
-
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
-});
-
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-const router = express.Router();
-
-router.get("/healthz", (req, res) => {
-  res.json({ status: "ok" });
-});
-
-app.use("/api", router);
-
-module.exports = app;
+module.exports = function handler(req, res) {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify({ status: "ok", message: "Pure Node.js root handler works!" }));
+};
