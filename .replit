@@ -9,28 +9,6 @@ args = ["pnpm", "store", "prune"]
 env = { "CI" = "true" }
 
 [workflows]
-runButton = "Project"
-
-[[workflows.workflow]]
-name = "Project"
-mode = "parallel"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "PDF Tools"
-
-[[workflows.workflow]]
-name = "PDF Tools"
-author = "agent"
-
-[workflows.workflow.metadata]
-outputType = "webview"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "PORT=21070 BASE_PATH=/ pnpm --filter @workspace/pdf-tools run dev"
-waitForPort = 21070
 
 [agent]
 stack = "PNPM_WORKSPACE"
