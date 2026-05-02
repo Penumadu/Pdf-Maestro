@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "pnpm --filter \"./artifacts/pdf-tools\" build && ls -la public/",
+    "build": "mkdir -p public && (cd artifacts/pdf-tools && npx vite build --config vite.config.ts) && (cp -r artifacts/pdf-tools/dist/public/. public/ || cp -r artifacts/pdf-tools/dist/. public/ || cp -r artifacts/pdf-tools/public/. public/ || true); ls -la public/",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
